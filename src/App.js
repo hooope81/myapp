@@ -19,7 +19,7 @@ function App() {
   const [value, setValue] = useState('');
   const [messageList, setMessageList] = useState([]);
 
-  const handleCnange = (event) => {
+  const handleChange = (event) => {
     setValue(event.target.value);
   }
 
@@ -80,7 +80,7 @@ function App() {
                 label="Outlined"
                 variant="outlined"
                 value={value}
-                onChange={handleCnange}
+                onChange={handleChange}
                 autoFocus
                 fullWidth
                 size="small"
