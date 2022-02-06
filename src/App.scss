@@ -69,3 +69,12 @@ justify-content: left;
 .boxchats {
   display: flex;
 }
+
+.chatNameBox {
+  padding: 20px;
+  display: block;
+  button {
+    display: block;
+  }
+
+}

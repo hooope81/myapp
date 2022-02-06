@@ -6,33 +6,11 @@ import Home from './home';
 import Chats from './chats';
 import Profile from './profile';
 import NoChats from './noChats';
-import { useState } from 'react';
 
 
-const initialChats = {
-    id1: {
-        name: 'Chat1',
-        messages: [{
-            text: 'FirstMessage',
-            author: 'me'
-        }]
-    },
-    id2: {
-        name: "Chat2",
-        messages: [
-            {
-                text: "Hi!",
-                author: "me"
-            },
-            {
-                text: "Hello!",
-                author: "bot"
-            }]
-    }
-}
 
 const Routers = () => {
-    const [chatsList, setChatsList] = useState(initialChats);
+    
     return (
         <div>
             <List sx={{ width: '720px', bgcolor: 'white', display: "flex" }}>
@@ -64,13 +42,13 @@ const Routers = () => {
             <div>
 
                 <Routes>
-                    <Route path='/' exact element={<Home />} />
+                    <Route path='/' exact element={<Home/>} />
 
-                    <Route path='/chats/:chatId' element={<Chats chats={chatsList} />} />
+                    <Route path='/chats/:chatId' element={<Chats />} />
 
 
                     <Route path='/profile' element={<Profile />} />
-                    <Route path="*" element={<NoChats chats={chatsList} />} />
+                    <Route path="*" element={<NoChats />} />
                 </Routes>
             </div>
         </div>
