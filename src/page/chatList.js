@@ -1,9 +1,14 @@
 import { Link, useParams } from 'react-router-dom';
-import { DialogTitle, TextField } from "@mui/material";
+import { DialogTitle, TextField, List, ListItem, ListItemIcon } from "@mui/material";
 import { Button, Dialog } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import {addChat} from '../store/chats/actions';
+import { addChat, delChat } from '../store/chats/actions';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import IconButton from '@mui/material/IconButton';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+import { blue } from '@mui/material/colors';
+
 
 const ChatList = () => {
 
@@ -12,6 +17,8 @@ const ChatList = () => {
     const [visible, setVisible] = useState(false);
     const [newChatName, setNewChatName] = useState();
     const dispatch = useDispatch();
+
+
 
     const handleOpen = () => {
         setVisible(true);
@@ -22,55 +29,68 @@ const ChatList = () => {
     }
 
     const handleChange = (e) => setNewChatName(e.target.value);
-   
+
     const onAddChat = () => {
-        dispatch (addChat(newChatName));
+        dispatch(addChat(newChatName));
         setNewChatName('');
         handleClose();
     }
 
+    const onDelChat = (index) => {
+        dispatch(delChat(index));
+
+
+    }
+
+
+
     return (
-        <div>
-            {chats.map((chat, index) => (
-                <div key={index}>
-                    <Link to={`/chats/${chat.id}`}>
-                        <b style={{ color: chat.id === chatId ? 'black' : 'grey' }}>
-                            {chat.name}
-                        </b>
-                    </Link>
-                </div>
-            ))}
-            <div>
-                <Button onClick={handleOpen}>Добавить чат</Button>
+        <div className='wraperChatsList'>
+
+            <div className='addChatBtn'>
+                <Button onClick={handleOpen} variant="contained">Add a chat</Button>
                 <Dialog open={visible} onClose={handleClose}>
-                    <DialogTitle>Пожалуйста, введите имя чата
+                    <DialogTitle sx={{
+                        fontSize: '24px', marginBottom: '-25px'
+                    }}>Please enter the chat name
                     </DialogTitle>
                     <div className='chatNameBox'>
                         <TextField value={newChatName} onChange={handleChange} />
-                        <Button onClick={onAddChat} disabled={!newChatName}>Добавить чат</Button>
+                        <Button onClick={onAddChat} disabled={!newChatName} variant="contained" sx={{
+                            marginTop: '15px'
+                        }}>
+                            Add a chat</Button>
                     </div>
                 </Dialog>
             </div>
+
+            {chats.map((chat, index) => (
+                <div key={index} className='chatListBox'>
+                    <List>
+                        <ListItem disablePadding>
+                            <ListItemIcon>
+                                <DraftsIcon sx={{ color: blue[500] }}/>
+                            </ListItemIcon>
+                            
+                                <Link to={`/chats/${chat.id}`}>
+                                    <div style={{ color: chat.id === chatId ? 'black' : 'grey', maxWidth:'100px',wordWrap: 'break-word'}} >
+                                        {chat.name}
+                                    </div>
+
+                                </Link>
+
+                                <IconButton onClick={() => onDelChat(index)}>
+                                    <ClearOutlinedIcon sx={{ color: blue[500] }} />
+                                </IconButton>
+                            
+                        </ListItem>
+                    </List>
+                </div>
+            ))
+            }
         </div>
     )
 
 }
-
-
-//     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
-
-//     {Object.keys(chats).map((chat, i)=> (
-
-//         <ListItem >
-
-//         <Avatar sx={{ bgcolor: cyan[500] }}>{i+1}</Avatar>
-//         <Link to={`/chats/${chat}`} key={i} style={{color: chat === chatId ? 'grey' : 'black'}}>
-//     {chats[chat].name}
-//     </Link>
-
-//     </ListItem>
-//     ))}
-//     </List>
-// }
 
 export default ChatList;

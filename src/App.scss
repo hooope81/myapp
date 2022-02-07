@@ -13,7 +13,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
- justify-content: end;
+  justify-content: end;
 }
 .mess {
   margin-bottom: 15px;
@@ -61,6 +61,7 @@ justify-content: left;
   display: flex;
   flex-direction: column;
   width: 500px;
+  
 }
 .boxInput {
   width: 428px;
@@ -68,6 +69,8 @@ justify-content: left;
  }
 .boxchats {
   display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
 }
 
 .chatNameBox {
@@ -77,4 +80,12 @@ justify-content: left;
     display: block;
   }
 
+}
+.chatListBox {
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.wraperChatsList {
+width: 200px;
 }

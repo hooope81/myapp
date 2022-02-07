@@ -27,7 +27,7 @@ const Profile = () => {
                 value={value}
                 onChange={handleChange}
             />
-            <button onClick={setName}>Изменить имя</button>
+            <button onClick={setName}>Change the name</button>
         </div>
     );
 };
