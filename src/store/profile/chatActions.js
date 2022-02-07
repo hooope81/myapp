@@ -1,6 +1,3 @@
-const EXAMLE_ACTION = 'EXAMLE_ACTION';
+export const CHANGE_NAME = 'PROFILE::CHANGE_NAME';
 
 
-export const toggleShowName = {
-    type: EXAMLE_ACTION
-}

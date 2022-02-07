@@ -1,29 +1,33 @@
 
-import {useCallback} from 'react';
+import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {toggleShowName} from '../store/profile/chatActions';
+import { CHANGE_NAME } from '../store/profile/chatActions';
+
 
 const Profile = () => {
-   
-    const {name, showName} = useSelector(state => state);
-const dispatch = useDispatch();
-    const setShowName = useCallback(() => {
-        dispatch(toggleShowName);
-       
-    }, [dispatch])
-    
+    const { name, showName } = useSelector(state => state.profile);
+    const [value, setValue] = useState(name);
+    const dispatch = useDispatch();
+
+    const handleChange = useCallback((event) => {
+        setValue(event.target.value);
+
+    }, []);
+
+    const setName = useCallback(() => {
+        dispatch({ type: CHANGE_NAME, payload: value });
+    }, [dispatch, value]);
+
+
     return (
         <div>
-         <h4>Profile</h4>
-         <input 
-           type="checkbox"
-           checked={showName}
-           value={showName}
-           onChange={setShowName}
-        />
-        <span>Show Name</span>
-
-        {showName && <div>{name}</div>}
+            <h4>Profile</h4>
+            <input
+                type="text"
+                value={value}
+                onChange={handleChange}
+            />
+            <button onClick={setName}>Change the name</button>
         </div>
     );
 };
