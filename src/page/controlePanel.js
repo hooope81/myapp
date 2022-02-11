@@ -1,15 +1,13 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { TextField, Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addMessage } from "../store/messages/actions";
-import Profile from "./profile";
+import { addMessageSaga } from "../store/messages/actions";
 
 const ControlPanel = () => {
 
     const [value, setValue] = useState('');
-    const messages = useSelector(state => state.messages.messageList);
-    const profileName = useSelector(state => state.profile.name)
+    const profileName = useSelector(state => state.profile.name);
     const dispatch = useDispatch();
     const { chatId } = useParams();
 
@@ -19,59 +17,41 @@ const ControlPanel = () => {
         setValue(valueFromInput);
     }, [value]);
 
-    const sendMessage = (message, author) => {
-        dispatch(addMessage(chatId, {
-            text: message,
-            author: author
+
+    const handleButton = useCallback(() => {
+        dispatch(addMessageSaga(chatId, {
+            text: value,
+            author: profileName
         }));
         setValue('');
-    }
-
-    const handleButton = () => {
-        sendMessage(value, profileName);
-    }
+    }, [value, chatId, dispatch]);
 
 
-    useEffect(() => {
-
-        let timer;
-        const currentChat = messages[chatId];
-
-        if (currentChat?.length > 0 && currentChat[currentChat?.length - 1]?.author === profileName) {
-            timer = setInterval(() => {
-                const currentMessage = 'Hello';
-                sendMessage(currentMessage, 'bot')
-            }, 1500);
-        }
-
-        return () => {
-            clearTimeout(timer);
-        };
-    }, [messages[chatId]]);
 
 
-        return <div>
-            <div className='waper'>
-                <div className="boxInput">
-                    <TextField
-                        style={{ margin: '20px' }}
-                        id="outlined-basic"
-                        label="Outlined"
-                        variant="outlined"
-                        value={value}
-                        onChange={handleChange}
-                        autoFocus
-                        fullWidth
-                        size="small"
-                        placeholder="Type something..."
-                    />
-                </div>
-                <Button color="primary" onClick={handleButton} size="medium" variant="contained">
 
-                    &#10148;
-                </Button>
+    return <div>
+        <div className='waper'>
+            <div className="boxInput">
+                <TextField
+                    style={{ margin: '20px' }}
+                    id="outlined-basic"
+                    label="Outlined"
+                    variant="outlined"
+                    value={value}
+                    onChange={handleChange}
+                    autoFocus
+                    fullWidth
+                    size="small"
+                    placeholder="Type something..."
+                />
             </div>
-        </div>
-    };
+            <Button color="primary" onClick={handleButton} size="medium" variant="contained">
 
-    export default ControlPanel;
+                &#10148;
+            </Button>
+        </div>
+    </div>
+};
+
+export default ControlPanel;
