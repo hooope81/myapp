@@ -16,12 +16,10 @@ const MessageList = () => {
 
     const renderMessage = useCallback((message, index) => {
 
-        let newName = message.author[0];
-        console.log(newName);
 
         return (
             <div className={message.author === "bot" ? "bot" : "me"} key={index}>
-                <Avatar sx={{ bgcolor: cyan[500] }}>{message.author === "bot" ? "bot" : newName}
+                <Avatar sx={{ bgcolor: cyan[500] }}>{message.author}
                 </Avatar>
                 <p className='mess'>{message.text} </p>
 
