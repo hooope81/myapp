@@ -5,7 +5,7 @@ import { CHANGE_NAME } from '../store/profile/chatActions';
 
 
 const Profile = () => {
-    const { name, showName } = useSelector(state => state.profile);
+    const { name} = useSelector(state => state.profile);
     const [value, setValue] = useState(name);
     const dispatch = useDispatch();
 
