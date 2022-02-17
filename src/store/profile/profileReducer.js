@@ -4,7 +4,6 @@ const initialState = {
     showName: true,
     name: "Nadin"
 };
-
 const profileReducer = (state=initialState, action) => {
     switch (action.type) {
         case CHANGE_NAME:

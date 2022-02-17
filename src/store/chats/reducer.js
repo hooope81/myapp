@@ -1,10 +1,10 @@
 import { ADD_CHAT } from './actions';
 import { DEL_CHAT } from './actions';
+import {CHATS_UPDATE} from './actions';
 
 const initialState = {
     chatList: []
 }
-
 
 const chatsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -19,26 +19,22 @@ const chatsReducer = (state = initialState, action) => {
                     }
                 ]
             }
-
         case DEL_CHAT:
-
             return {
                 ...state,
                 chatList: [
-
                     ...state.chatList.slice(0, action.index),
                     ...state.chatList.slice(action.index + 1)
-
                 ]
-
+            }
+        case CHATS_UPDATE:
+            return {
+                ...state,
+                chatList: action.chats
             }
 
         default:
             return state
     }
 }
-
 export default chatsReducer;
-
-// ...state.chatList.slice(0, action.id),
-// ...state.chatList.slice(action.id + 1),

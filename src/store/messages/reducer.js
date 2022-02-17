@@ -1,17 +1,12 @@
-import { ADD_MESSAGE } from './actions';
-
+import { ADD_MESSAGE, UPDATE_MESSAGES } from './actions';
 
 const initialState = {
     messageList: {}
 }
-
 const messageReducer = (state = initialState, action) => {
-    const currentList = state.messageList[action.chatId] || [];
-
-    switch (action.type) {
-
+       switch (action.type) {
         case ADD_MESSAGE:
-
+            const currentList = state.messageList[action.chatId] || [];
             return {
                 ...state,
                 messageList: {
@@ -25,15 +20,17 @@ const messageReducer = (state = initialState, action) => {
                     ]
                 }
             }
-
-        
-
-
-
+        case UPDATE_MESSAGES:
+            return {
+                ...state,
+                messageList: {
+                    ...state.messageList,
+                    [action.chatId]: action.messages
+                }
+            };
 
         default:
             return state
     }
 }
-
 export default messageReducer;

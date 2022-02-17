@@ -89,3 +89,21 @@ justify-content: left;
 .wraperChatsList {
 width: 200px;
 }
+
+.link {
+  text-decoration: none;
+  font-size: large;
+  font-weight: 600;
+  color: rgb(24, 145, 214);
+}
+.link_menu {
+  text-decoration: none;
+  color: rgb(24, 145, 214);
+  font-size: 17px;
+  font-weight: 600;
+  }
+  .chatsListWraper {
+    display: flex;
+    justify-content:left;
+
+  }
