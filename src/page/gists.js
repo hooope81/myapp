@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect } from "react";
 import { LinearProgress, Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,13 +5,10 @@ import { getAllGists } from "../store/middleware";
 import { selectGists, selectGistsError, selectGistsLoading } from "../store/gists/selectors";
 
 const Gists = () => {
-
     const dispatch = useDispatch();
-
     const gists = useSelector(selectGists);
     const error = useSelector(selectGistsError);
     const loading = useSelector(selectGistsLoading);
-
     const requestGists = () => {
         dispatch(getAllGists());
     }
@@ -21,7 +17,6 @@ const Gists = () => {
         requestGists();
     }, []);
 
-
     const renderGist = useCallback((gist) => (
         <li key={gist.id}>{gist.description || 'No description'}</li>
     ), [])
@@ -29,8 +24,8 @@ const Gists = () => {
     if (loading) {
         return (
             <Box sx={{ width: '100%' }}>
-            <LinearProgress />
-          </Box>
+                <LinearProgress />
+            </Box>
         )
     }
 
@@ -45,5 +40,4 @@ const Gists = () => {
 
     return <ul>{gists?.map(renderGist)}</ul>;
 }
-
 export default Gists;

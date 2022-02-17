@@ -1,34 +1,33 @@
 import { useState, useCallback } from "react";
 import { TextField, Button } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addMessageSaga } from "../store/messages/actions";
+import { getDatabase, ref, push, set } from "firebase/database";
+import firebase from "../service/firebase";
 
 const ControlPanel = () => {
-
     const [value, setValue] = useState('');
     const profileName = useSelector(state => state.profile.name);
-    const dispatch = useDispatch();
     const { chatId } = useParams();
-
 
     const handleChange = useCallback((event) => {
         const valueFromInput = event.target.value;
         setValue(valueFromInput);
     }, [value]);
 
-
     const handleButton = useCallback(() => {
-        dispatch(addMessageSaga(chatId, {
+        const message = {
             text: value,
             author: profileName
-        }));
+        }
+        const db = getDatabase(firebase);
+        const messageRef = ref(db, `/messages/${chatId}`);
+        const newMessageRef = push(messageRef);
+        set(newMessageRef, message).then((res) => console.log(res));
+
+
         setValue('');
-    }, [value, chatId, dispatch]);
-
-
-
-
+    }, [value, chatId]);
 
     return <div>
         <div className='waper'>
@@ -47,11 +46,9 @@ const ControlPanel = () => {
                 />
             </div>
             <Button color="primary" onClick={handleButton} size="medium" variant="contained">
-
                 &#10148;
             </Button>
         </div>
     </div>
 };
-
 export default ControlPanel;

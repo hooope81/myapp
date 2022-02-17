@@ -1,11 +1,8 @@
-// import React, { useEffect, useState } from 'react';
 import './App.scss';
 import { AppBar, Toolbar, Typography } from '@mui/material';
-
 import { cyan, blue } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Routers from './page/routers'; 
-// import MessageList from './page/messageList';
+import Routers from './page/routers';
 
 const theme = createTheme({
   palette: {
@@ -19,30 +16,6 @@ const theme = createTheme({
 });
 
 function App() {
-  // const [value, setValue] = useState('');
-  // const [messageList, setMessageList] = useState([]);
-
-  // const handleChange = (event) => {
-  //   setValue(event.target.value);
-  // }
-
-  // function add() {
-  //   setMessageList([...messageList, { text: value, author: "me" }]);
-  //   setValue('');
-  // };
-
-  
-
-  // useEffect(() => {
-  //   if (messageList.length > 0 && messageList[messageList.length - 1].author === 'me') {
-  //     setTimeout(() => {
-  //       setMessageList([...messageList, { text: 'Hello!', author: "bot" }]);
-  //     }, 1500);
-  //   }
-  // }, [messageList]);
-
-  
-
   return (
     <ThemeProvider theme={theme}>
       <div className='box'>
@@ -54,45 +27,10 @@ function App() {
           </Toolbar>
         </AppBar>
         <div className='container'>
-
-
-
-        <Routers />
-
-
-
-          {/* <div className='boxApp'> */}
-           
-              {/* <MessageList messageList={messageList}/> */}
-         
-            {/* <div className='waper'>
-              <div className="boxInput">
-                <TextField
-                  style={{ margin: '20px' }}
-                  id="outlined-basic"
-                  label="Outlined"
-                  variant="outlined"
-                  value={value}
-                  onChange={handleChange}
-                  autoFocus
-                  fullWidth
-                  size="small"
-                  placeholder="Type something..."
-                />
-              </div>
-              <Button color="primary" onClick={add} size="medium" variant="contained">
-
-                &#10148;
-              </Button>
-            </div>
-          </div> */}
+          <Routers />
         </div>
       </div>
     </ThemeProvider>
   )
 }
-
 export default App;
-
-//
-//

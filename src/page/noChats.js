@@ -1,15 +1,10 @@
-
 import ChatList from "./chatList";
 
-
-
 const NoChats = () => {
-    
     return (
         <div>
-        <ChatList />
+            <ChatList />
         </div>
     )
 }
-
 export default NoChats;

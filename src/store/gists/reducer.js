@@ -14,10 +14,8 @@ const initialState = {
     loading: false
 }
 
-
 const gistsReducer = (state = initialState, action) => {
     switch (action.type) {
-
         case GET_GISTS_REQUEST:
             return {
                 ...state,
@@ -35,21 +33,15 @@ const gistsReducer = (state = initialState, action) => {
                 loading: false
             }
         case GET_GISTS_FAILURE:
-                return {
-                    ...state,
-                    request: STATUSES.FAILURE,
-                    gists: [],
-                    error: action.payload,
-                    loading: false
-                }
-
-
-
-
-
+            return {
+                ...state,
+                request: STATUSES.FAILURE,
+                gists: [],
+                error: action.payload,
+                loading: false
+            }
         default:
             return state;
     }
 }
-
 export default gistsReducer;
