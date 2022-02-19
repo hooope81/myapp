@@ -16,12 +16,14 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import LockIcon from '@mui/icons-material/Lock';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { formatTimeStrings } from '../utils/formatTimeStrings';
 
 const Routers = () => {
     const auth = useAuth();
     return (
         <div>
-            <List sx={{ width: '720px', bgcolor: 'white', display: "flex" }}>
+        <div>{formatTimeStrings(['12.02'])}</div>
+                  <List sx={{ width: '720px', bgcolor: 'white', display: "flex" }}>
                 <ListItem disableGutters >
                     <HomeIcon color="primary" />
                     <Link to='/' className='link_menu'>Home</Link>
@@ -59,12 +61,13 @@ const Routers = () => {
                     <Route path='/' exact element={<Home />} />
                     <Route path='/login' exact element={<Login />} />
                     <Route path='/signup' exact element={<SignUp />} />
-
+                    
                     <Route element={<RequiredAuth />}>
                         <Route path='/chats/' exact element={<NoChats />} />
                         <Route path='/chats/:chatId' element={<Chats />} />
                         <Route path='/profile' element={<Profile />} />
                         <Route path='/gists' element={<Gists />} />
+
                     </Route>
                     <Route path="*" element={<NoChats />} />
                 </Routes>
