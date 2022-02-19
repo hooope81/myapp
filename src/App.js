@@ -4,6 +4,7 @@ import { cyan, blue } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Routers from './page/routers';
 
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -31,6 +32,7 @@ function App() {
         </div>
       </div>
     </ThemeProvider>
+   
   )
 }
 export default App;
