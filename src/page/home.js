@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { formatTimeStrings } from '../utils/formatTimeStrings';
-// import ForTest from '../forTest';
+
 
 const Home = () => {
     return (
@@ -22,8 +22,7 @@ const Home = () => {
                     <Link to='signup' className="link">Sing out</Link>
                 </Button>
             </div>
-            {/* <div>{formatTimeStrings(['12.02','18.02'])}</div> */}
-            {/* <ForTest /> */}
+            
         </Box>
     );
 };

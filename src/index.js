@@ -6,24 +6,19 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { AuthProvider } from './hook/useAuth';
-import ForTest from './forTest';
-
 
 ReactDOM.render(
 
-  // <React.StrictMode>
-
-  //   <Provider store={store}>
-  //     <AuthProvider>
-  //       <BrowserRouter>
-  //         <App />
-  //       </BrowserRouter>
-  //     </AuthProvider>
-  //   </Provider>
-
-  // </React.StrictMode>
-  <ForTest />
-  ,
+  <React.StrictMode>
+    <Provider store={store}>
+      <AuthProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </AuthProvider>
+    </Provider>
+  </React.StrictMode>
+   ,
   document.getElementById('root')
 );
 

@@ -16,14 +16,13 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import LockIcon from '@mui/icons-material/Lock';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { formatTimeStrings } from '../utils/formatTimeStrings';
+
 
 const Routers = () => {
     const auth = useAuth();
     return (
         <div>
-        <div>{formatTimeStrings(['12.02'])}</div>
-                  <List sx={{ width: '720px', bgcolor: 'white', display: "flex" }}>
+            <List sx={{ width: '720px', bgcolor: 'white', display: "flex" }}>
                 <ListItem disableGutters >
                     <HomeIcon color="primary" />
                     <Link to='/' className='link_menu'>Home</Link>
@@ -49,9 +48,9 @@ const Routers = () => {
                     <Link to='/login' className='link_menu'>Login</Link>
                 </ListItem>
                 <ListItem disableGutters >
-                    <Button onClick={() => auth.signout()} variant="outlined" size="small" style={{ width:'120px', fontSize: '14px', fontWeight: '700' }}>
-                    <LogoutIcon color="primary" />
-                    Sign out</Button>
+                    <Button onClick={() => auth.signout()} variant="outlined" size="small" style={{ width: '120px', fontSize: '14px', fontWeight: '700' }}>
+                        <LogoutIcon color="primary" />
+                        Sign out</Button>
                 </ListItem>
             </List>
             <div>
@@ -61,7 +60,7 @@ const Routers = () => {
                     <Route path='/' exact element={<Home />} />
                     <Route path='/login' exact element={<Login />} />
                     <Route path='/signup' exact element={<SignUp />} />
-                    
+
                     <Route element={<RequiredAuth />}>
                         <Route path='/chats/' exact element={<NoChats />} />
                         <Route path='/chats/:chatId' element={<Chats />} />
